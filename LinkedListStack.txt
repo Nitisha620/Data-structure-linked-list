@@ -11,75 +11,73 @@ struct stack{
     struct listNode *top;
 };
 
-struct stack* createStack(int capacity){
+struct stack* createStack(int capacity) {
     struct stack *S = (struct stack*)malloc(sizeof(struct stack));
     if(!S)
         return NULL;
-    S->top = NULL;
+    S -> top = NULL;
     return S;
 }
 
-int isEmpty(struct stack *s){
-    return s->top==NULL;
+int isEmpty(struct stack *s) {
+    return s -> top==NULL;
 }
 
-int push(struct stack* s){
+int push(struct stack* s) {
     struct listNode* temp;
     temp = (struct listNode*)malloc(sizeof(struct listNode));
 
     printf("Enter the element: ");
-    scanf("%d",&temp->data);
+    scanf("%d", &temp -> data);
     
-    temp->next = s->top;
-    s->top = temp;
+    temp -> next = s -> top;
+    s -> top = temp;
 }
 
-int peek(struct stack* s){
-    if(isEmpty(s))
+int peek(struct stack* s) {
+    if(!isEmpty(s))
     printf("Stack is empty");
     else
-    printf("%d",s->top->data);
+    printf("%d", s -> top -> data);
 }
 
-int pop(struct stack* s){
+int pop(struct stack* s) {
     if(isEmpty(s))
     printf("Stack is empty");
     else{
-        struct listNode * temp = s->top;
-        s->top = s->top->next;
-        int data = temp->data;
+        struct listNode * temp = s -> top;
+        s -> top = s -> top -> next;
+        int data = temp -> data;
         free(temp);
         return data;
     }
 }
 
-int deleteStack(struct stack* s){
-    struct listNode *temp,*p;
-    p = s->top;
+int deleteStack(struct stack* s) {
+    struct listNode *temp, *p;
+    p = s -> top;
     while(p){
-    temp = p->next;
-    p = p->next;
+    temp = p -> next;
+    p = p -> next;
     free(temp);
     }
     free(s);
 }
 
-int main(){
-    
+int main() {
     int capacity;
     printf("Enter the capacity of Stack :");
-    scanf("%d",&capacity);
+    scanf("%d", &capacity);
     struct stack *stk = createStack(capacity);
-    for(int i =0;i<capacity;i++){
-    push(stk);
+    for(int i = 0; i < capacity; i++) {
+        push(stk);
     }
     push(stk);
     peek(stk);
-    for(int i =0;i<capacity;i++){
-    printf("%d is popped",pop(stk));
+    for(int i = 0; i < capacity; i++){
+    printf("%d is popped", pop(stk));
     }    
     peek(stk);
     deleteStack(stk);
     return 0;
-    
 }
