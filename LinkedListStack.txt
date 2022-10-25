@@ -36,27 +36,26 @@ int push(struct stack* s) {
 
 int peek(struct stack* s) {
     if(!isEmpty(s))
+        printf("%d", s -> top -> data);
+
     printf("Stack is empty");
-    else
-    printf("%d", s -> top -> data);
 }
 
 int pop(struct stack* s) {
-    if(isEmpty(s))
-    printf("Stack is empty");
-    else{
-        struct listNode * temp = s -> top;
+    if(!isEmpty(s)) {
+         struct listNode * temp = s -> top;
         s -> top = s -> top -> next;
         int data = temp -> data;
         free(temp);
         return data;
     }
+    printf("Stack is empty");
 }
 
 int deleteStack(struct stack* s) {
     struct listNode *temp, *p;
     p = s -> top;
-    while(p){
+    while(p) {
     temp = p -> next;
     p = p -> next;
     free(temp);
